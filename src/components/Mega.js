@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text, TextInput, View, StyleSheet,  Button} from 'react-native'
+import {Text, TextInput, View, StyleSheet, Button, FlatList} from 'react-native'
 import Nav from './Nav'
 import Numero from './Numero'
 
@@ -22,10 +22,8 @@ export default class Mega extends Component{
     }
 
     gerarNumeros = () => {
-        let qtdNums = this.state.qtdNumeros
-        qtdNums = qtdNums > 40 ? 40 : qtdNums
 
-        const numeros = Array(qtdNums)
+        const numeros = Array(this.state.qtdNumeros)
             .fill()
             .reduce(n => [...n, this.gerarNumeroNaoContido(n)], [])
             .sort((a, b) => a - b)
@@ -44,7 +42,6 @@ export default class Mega extends Component{
             <View>
                 <Nav title="Mega-sena" />
                  <View style={styles.container}>
-                    <Text style={styles.limite}>Limite máximo atual 40 números</Text>
                     <TextInput
                         style={styles.inputQtd}
                         keyboardType="numeric"
@@ -56,6 +53,8 @@ export default class Mega extends Component{
                         color="#ff9800"
                         onPress={this.gerarNumeros}
                     />
+                    <View style={styles.line}>
+                    </View>
                     
                     <View style={styles.boxNums}>
                         {this.exibirNumeros()}
@@ -71,8 +70,8 @@ export default class Mega extends Component{
 
 const styles = StyleSheet.create({
     container:{ 
-        padding: 30,
-        height: '100%'
+        padding: 20,
+
     },
     inputQtd:{
         backgroundColor: '#f2f2f2',
@@ -92,10 +91,15 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 50
     },
+    line:{
+        marginVertical: 20,
+        backgroundColor: "#aaa",
+        height: 1,
+    },
     boxNums:{
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     limite:{
         color: 'red',

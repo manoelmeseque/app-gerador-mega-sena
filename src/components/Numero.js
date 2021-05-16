@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 25,
         marginTop: 10,
-        marginRight: 10
+        marginRight: 10,
     },
     txt:{
         fontSize: 22,
